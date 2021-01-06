@@ -74,7 +74,7 @@ const help = (prefix) => {
 ┣⊱ *${prefix}listadmin*
 ┣⊱ *${prefix}simih* [1/0]
 ┣⊱ *${prefix}nsfw* [1/0]
-┣⊱ *${prefix}welcome [1/0]
+┣⊱ *${prefix}welcome* [1/0]
 ┣━━❀ *Owner bot* ❀━
 ┣⊱ *${prefix}clearall*
 ┣⊱ *${prefix}block*
