@@ -332,7 +332,7 @@ client.on('group-participants-update', async (anu) => {
 				   anu = await fetchJson(`https://arugaz.herokuapp.com/api/waifu`)
 				   buf = await getBuffer(anu.image)
 				   texs = ` *anime name* : ${anu.name} \n*deskripsi* : ${anu.desc} \n*source* : ${anu.source}`
-				   client.sendMessage(from, buf, image, { quoted: mek, caption: ${texs}})
+				   client.sendMessage(from, buf, image, { quoted: mek, caption: `${texs}`})
 				break
 				case 'anime':
 					teks = body.slice(7)
