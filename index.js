@@ -35,7 +35,7 @@ const vcard = 'BEGIN:VCARD\n'
             + 'ORG: Pengembang XBot;\n' 
             + 'TEL;type=CELL;type=VOICE;waid=6282334297175:+62 823-3429-7175\n' 
             + 'END:VCARD' 
-prefix = '!'
+prefix = '#'
 blocked = []          
 
 /********** LOAD FILE **************/
@@ -229,13 +229,6 @@ client.on('group-participants-update', async (anu) => {
 					const te = ra[Math.floor(Math.random() * ra.length)]
 					client.sendMessage(from, 'Pertanyaan : *'+rate+'*\n\nJawaban : '+ te+'%', text, { quoted: mek })
 					break
-          case 'botstat': {
-            const loadedMsg = await client.getAmountOfLoadedMessages()
-            const chatIds = await client.getAllChatIds()
-            const groups = await client.getAllGroups()
-            client.sendMessage(from, `Status :\n- *${loadedMsg}* Loaded Messages\n- *${groups.length}* Group Chats\n- *${chatIds.length - groups.length}* Personal Chats\n- *${chatIds.length}* Total Chats`)
-            break
-        }
           case 'speed':
           case 'ping':
             await client.sendMessage(from, `Pong!!!!\nSpeed: ${processTime(t, moment())} _Second_`)
@@ -253,7 +246,6 @@ client.on('group-participants-update', async (anu) => {
                 case 'iri':
                    client.sendMessage(from, 'sound' + 'iri.mp3', {quoted: mek, ptt:true})
                break
-                
             case 'abgjago':
             case 'abangjago':
                 client.sendMessage(from, 'sound' + 'abangjago'+'mp3', {quoted: mek, ptt:true})
@@ -270,12 +262,10 @@ client.on('group-participants-update', async (anu) => {
             case 'kangcopet':
                 client.sendMessage(dari, './sound'+'welot'+'mp3',{quoted: mek, ptt:true})
                 break
-                
-                
 				case 'info':
 					me = client.user
 					uptime = process.uptime()
-					teks = `𝗡𝗮𝗺𝗮 𝗯𝗼𝘁 : ${me.name}\n*𝗡𝗼𝗺𝗲𝗿 𝗯𝗼𝘁* : @${me.jid.split('@')[0]}\n*𝗣𝗿𝗲𝗳𝗶𝘅* : ${prefix}\n𝗧𝗼𝘁𝗮𝗹 𝗕𝗹𝗼𝗰𝗸 𝗖𝗼𝗻𝘁𝗮𝗰𝘁 : ${blocked.length}\n𝗧𝗵𝗲 𝗯𝗼𝘁 𝗶𝘀 𝗮𝗰𝘁𝗶𝘃𝗲 𝗼𝗻 : ${kyun(uptime)}\n`
+					teks = `*Nama bot* : ${me.name}\n*OWNER* : *AMPIBI*\n*AUTHOR* : AMPIBI\n*Nomor Bot* : @${me.jid.split('@')[0]}\n*Prefix* : ${prefix}\n*Total Block Contact* : ${blocked.length}\n*The bot is active on* : ${kyun(uptime)}`
 					buffer = await getBuffer(me.imgUrl)
 					client.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
@@ -326,46 +316,6 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(anu.result)
 					client.sendMessage(from, buffer, image, {quoted: mek})
 					break
-                case 'ninjalogo':
-                      if (args.length < 1) return reply('Teks nya mana?')
-                      gh = body.slice(11)
-                      gl1 = gh.split("|")[0];
-                      gl2 = gh.split("|")[1];
-                      reply(mess.wait)
-                      anu = await fetchJson(`https://tobz-api.herokuapp.com/api/textpro?theme=ninjalogo&text1=${gl1}&text2=${gl2}`, {method: 'get'})
-                      buff = await getBuffer(anu.result)
-                      client.sendMessage(from, buff, image, {quoted: mek})
-                      break
-                case 'glitch':
-					var gh = body.slice(8)
-					var tels3 = gh.split("|")[0];
-					var tels4 = gh.split("|")[1];
-					if (args.length < 1) return reply(mess.blank)
-					reply(mess.wait)
-					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/textpro?theme=glitch&text1=${tels3}&text2=${tels4}`, {method: 'get'})
-					buffer = await getBuffer(anu.result)
-					client.sendMessage(from, buffer, image, {quoted: mek})
-					break
-                case 'wolflogo':
-                      if (args.length < 1) return reply('Teks nya mana?')
-                      gh = body.slice(10)
-                      gl1 = gh.split("|")[0];
-                      gl2 = gh.split("|")[1];
-                      reply(mess.wait)
-                      anu = await fetchJson(`https://tobz-api.herokuapp.com/api/textpro?theme=wolflogo1&text1=${gl1}&text2=${gl2}`, {method: 'get'})
-                      buff = await getBuffer(anu.result)
-                      client.sendMessage(from, buff, image, {quoted: mek})
-                      break
-                case 'lionlogo':
-                      if (args.length < 1) return reply('Teks nya mana?')
-                      gh = body.slice(10)
-                      gl1 = gh.split("|")[0];
-                      gl2 = gh.split("|")[1];
-                      reply(mess.wait)
-                      anu = await fetchJson(`https://tobz-api.herokuapp.com/api/textpro?theme=lionlogo&text1=${gl1}&text2=${gl2}`, {method: 'get'})
-                      buff = await getBuffer(anu.result)
-                      client.sendMessage(from, buff, image, {quoted: mek})
-                      break
                 case 'truth':
 					const trut =['Pernah suka sama siapa aja? berapa lama?','Kalau boleh atau kalau mau, di gc/luar gc siapa yang akan kamu jadikan sahabat?(boleh beda/sma jenis)','apa ketakutan terbesar kamu?','pernah suka sama orang dan merasa orang itu suka sama kamu juga?','Siapa nama mantan pacar teman mu yang pernah kamu sukai diam diam?','pernah gak nyuri uang nyokap atau bokap? Alesanya?','hal yang bikin seneng pas lu lagi sedih apa','pernah cinta bertepuk sebelah tangan? kalo pernah sama siapa? rasanya gimana brou?','pernah jadi selingkuhan orang?','hal yang paling ditakutin','siapa orang yang paling berpengaruh kepada kehidupanmu','hal membanggakan apa yang kamu dapatkan di tahun ini','siapa orang yang bisa membuatmu sange','siapa orang yang pernah buatmu sange','(bgi yg muslim) pernah ga solat seharian?','Siapa yang paling mendekati tipe pasangan idealmu di sini','suka mabar(main bareng)sama siapa?','pernah nolak orang? alasannya kenapa?','Sebutkan kejadian yang bikin kamu sakit hati yang masih di inget','pencapaian yang udah didapet apa aja ditahun ini?','kebiasaan terburuk lo pas di sekolah apa?']
 					const ttrth = trut[Math.floor(Math.random() * trut.length)]
@@ -378,16 +328,28 @@ client.on('group-participants-update', async (anu) => {
 					tod = await getBuffer(`https://i.ibb.co/305yt26/bf84f20635dedd5dde31e7e5b6983ae9.jpg`)
 					client.sendMessage(from, tod, image, { quoted: mek, caption: '*Dare*\n\n'+ der })
 					break				
-                case 'lirik':
-					teks = body.slice(7)
-					anu = await fetchJson(`http://scrap.terhambar.com/lirik?word=${teks}`, {method: 'get'})
-					reply('Lirik dari lagu '+teks+' adalah :\n\n'+anu.result.lirik)
-					break
+				case 'waifu':
+				   anu = await fetchJson(`https://arugaz.herokuapp.com/api/waifu`)
+				   buf = await getBuffer(anu.image)
+				   texs = ` *anime name* : ${anu.name} \n*deskripsi* : ${anu.desc} \n*source* : ${anu.source}`
+				   client.sendMessage(from, buf, image, { quoted: mek, caption: ${texs}})
+				break
 				case 'anime':
 					teks = body.slice(7)
 					anu = await fetchJson(`https://mnazria.herokuapp.com/api/anime?query=${teks}`, {method: 'get'})
 					reply('anime nya ni '+teks+' adalah :\n\n'+anu.title)
 					break
+                case 'neko':
+                    anu = await fetchJson(`https://arugaz.herokuapp.com/api/nekonime` , {method: 'get'})
+                    buf = await getBuffer(anu.result)
+                    client.sendMessage(from, buf, image, { quoted: mek, caption: 'ih wibu'})
+                break
+                case 'dewabatch':
+                    teks = body.slice(11)
+                    anu = await fetchJson(`https://arugaz.herokuapp.com/api/dewabatch?q=${teks}` , {method: 'get'})
+                    thum = await getBuffer(anu.thumb)
+                    client.sendMessage(from, thum, image, {quoted: mek, caption: `${anu.result}`})
+                 break
                 case 'bug':
                      const pesan = body.slice(5)
                       if (pesan.length > 300) return client.sendMessage(from, 'Maaf Teks Terlalu Panjang, Maksimal 300 Teks', msgType.text, {quoted: mek})
@@ -407,81 +369,6 @@ client.on('group-participants-update', async (anu) => {
 					anu = await fetchJson(`https://mnazria.herokuapp.com/api/screenshotweb?url=${teks}`)
 					buff = await getBuffer(anu.gambar)
 					client.sendMessage(from, buff, image, {quoted: mek})
-					break
-                case 'nekonime':
-				    try {
-						res = await fetchJson(`https://tobz-api.herokuapp.com/api/nekonime`, {method: 'get'})
-						buffer = await getBuffer(res.result)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Ingat! Cintai nekonime'})
-					} catch (e) {
-						console.log(`Error :`, color(e,'red'))
-						reply(' *ERROR* ')
-					}
-					break
-                case 'randomanime':
-				    try {
-						res = await fetchJson(`https://tobz-api.herokuapp.com/api/randomanime`, {method: 'get'})
-						buffer = await getBuffer(res.result)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'ni randomanime!'})
-					} catch (e) {
-						console.log(`Error :`, color(e,'red'))
-						reply(' *ERROR* ')
-					}
-					break
-			    case 'randomhentai':
-				    try {
-						if (!isNsfw) return reply('Nsfw tidak di aktifkan')
-						res = await fetchJson(`https://tobz-api.herokuapp.com/api/hentai`, {method: 'get'})
-						buffer = await getBuffer(res.result)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'hentai teros'})
-					} catch (e) {
-						console.log(`Error :`, color(e,'red'))
-						reply(' *ERROR* ')
-					}
-					break
-                case 'nsfwloli':
-				    try {
-						if (!isNsfw) return reply('Nsfw tidak di aktifkan')
-						res = await fetchJson(`https://api.lolis.life/random?nsfw=true`, {method: 'get'})
-						buffer = await getBuffer(res.url)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Jangan jadiin bahan buat comli om'})
-					} catch (e) {
-						console.log(`Error :`, color(e,'red'))
-						reply(' *ERROR* ')
-					}
-					break
-			    case 'nsfwblowjob':
-				    try {
-						if (!isNsfw) return reply('Nsfw tidak di aktifkan')
-						res = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwblowjob`, {method: 'get'})
-						buffer = await getBuffer(res.result)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Jangan jadiin bahan buat comli om'})
-					} catch (e) {
-						console.log(`Error :`, color(e,'red'))
-						reply(' *ERROR* ')
-					}
-					break
-			    case 'nsfwneko':
-				    try {
-						if (!isNsfw) return reply('Nsfw tidak di aktifkan')
-						res = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwneko`, {method: 'get'})
-						buffer = await getBuffer(res.result)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'ni anjim'})
-					} catch (e) {
-						console.log(`Error :`, color(e,'red'))
-						reply(' *ERROR* ')
-					}
-					break
-				case 'nsfwtrap':
-				    try {
-						if (!isNsfw) return reply('Nsfw tidak di aktifkan')
-						res = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwtrap`, {method: 'get'})
-						buffer = await getBuffer(res.result)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'ni anjim'})
-					} catch (e) {
-						console.log(`Error :`, color(e,'red'))
-						reply(' *ERROR* ')
-					}
 					break
                 case 'bucin':
 					gatauda = body.slice(7)
@@ -509,13 +396,12 @@ client.on('group-participants-update', async (anu) => {
 					anu = await fetchJson(`https://arugaz.herokuapp.com/api/chord?q=${tels}`, {method: 'get'})
 					reply(anu.result)
 					break
-                case 'infogempa':
-                   anu = await fetchJson(`https://tobz-api.herokuapp.com/api/infogempa`, {method: 'get'})
-                   if (anu.error) return reply(anu.error)
-                   buff = await getBuffer(anu.map)
-                   hasil = ` *potensi* \n ${anu.potensi} *lokasi* \n${anu.lokasi} *magnitude* \n${anu.magnitude} *koordinat* \n${anu.koordinat} *kedalaman* \n${anu.kedalaman}`
-                   client.sendMessage(from, buff, image, {quoted: mek, caption: hasil})
-                   break
+                case 'lirik':
+                    if (args.length < 1) return reply('judul lagu nya mana om')
+                    teha = body.slice(7)
+                    anu = await fetchJson(`https://arugaz.herokuapp.com/api/lirik?judul=${teha}` , {method: 'get'})
+                    reply(anu.result)
+                break
                 case 'pokemon':
 					anu = await fetchJson(`https://api.fdci.se/rep.php?gambar=pokemon`, {method: 'get'})
 					reply(mess.wait)
@@ -532,12 +418,18 @@ client.on('group-participants-update', async (anu) => {
 					pok = await getBuffer(nimek)
 					client.sendMessage(from, pok, image, { quoted: mek })
 					break
+                case 'spamcall':
+                   if (args.length < 1) return ('masukan nomer tujuan bambang')
+                   weha = body.slice(10)
+                   anu = await fetchJson(`https://arugaz.herokuapp.com/api/spamcall?no=${weha}` , {method: 'get'})
+                   client.sendMessage(from, anu.logs, text, {quoted: mek})
+                 break
                 case 'indohot':
-                if (!isNsfw) return reply('nsfw gak aktif')
+                   if (!isNsfw) return reply('nsfw gak aktif')
                    anu = await fetchJson(`https://arugaz.herokuapp.com/api/indohot`, {method: 'get'})
                    if (anu.error) return reply(anu.error)
                    hasil = `*judul* \n${anu.result.judul} *genre* \n${anu.result.genre} *durasi* \n${anu.result.durasi} *url* \n${anu.result.url}`
-                   client.sendMessage(from, hasil, text, {quoted: mek,})
+                   client.sendMessage(from, hasil, text, {quoted: mek})
                    break
 				case 'ytmp4':
 					if (args.length < 1) return reply('Urlnya mana um?')
@@ -557,14 +449,9 @@ client.on('group-participants-update', async (anu) => {
                     buff = await getBuffer(`https://docs-jojo.herokuapp.com/api/text3d?text=${teks}`, {method: 'get'})
                     client.sendMessage(from, buff, image, {quoted: mek, caption: `${teks}`})
 			     	break
-                case 'shorturl':
-                    anu = await fetchJson(`https://tobz-api.herokuapp.com/api/shorturl?url=${body.slice(10)}`)
-			        hasil = `${anu.result}`
-			        reply(hasil)
-			        break
 			    case 'fototiktok':
                     gatauda = body.slice(12)
-                    anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/tiktokpp?user=${body.slice(8)}`)
+                    anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/tiktokpp?user=${gatauda}`)
 			        buff = await getBuffer(anu.result)
                     reply(anu.result)
 			        break
@@ -654,7 +541,7 @@ client.on('group-participants-update', async (anu) => {
 							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
 							.toFormat('webp')
 							.save(ran)
-					} else {
+							} else {
 						reply(`Kirim gambar dengan caption ${prefix}sticker atau reply/tag gambar`)
 					}
 					break
@@ -688,39 +575,7 @@ client.on('group-participants-update', async (anu) => {
 					if (!isOwner) return reply(mess.only.ownerB)
 					prefix = args[0]
 					reply(`𝗣𝗿𝗲𝗳𝗶𝘅 𝗯𝗲𝗿𝗵𝗮𝘀𝗶𝗹 𝗱𝗶 𝘂𝗯𝗮𝗵 𝗺𝗲𝗻𝗷𝗮𝗱𝗶 : ${prefix}`)
-					break 	
-				case 'meme': 
-					meme = await kagApi.memes()
-					buffer = await getBuffer(`https://imgur.com/${meme.hash}.jpg`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '.......'})
-					break
-				case 'memeindo': 
-					memein = await kagApi.memeindo()
-					buffer = await getBuffer(`https://imgur.com/${memein.hash}.jpg`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '.......'})
-					break
-				
-			case 'loli': 
-				    try {
-						res = await fetchJson(`https://api.lolis.life/random`, {method: 'get'})
-						buffer = await getBuffer(res.url)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Ingat! Citai Lolimu'})
-					} catch (e) {
-						console.log(`Error :`, color(e,'red'))
-						reply(' *ERROR* ')
-					}
-					break
-				case 'nsfwloli': 
-				    try {
-						if (!isNsfw) return reply('Maaf fitur ini belum di aktifkan/kesalahan server bot')
-						res = await fetchJson(`https://api.lolis.life/random?nsfw=true`, {method: 'get'})
-						buffer = await getBuffer(res.url)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Jangan jadiin bahan buat comli om'})
-					} catch (e) {
-						console.log(`Error :`, color(e,'red'))
-						reply(' *ERROR* ')
-					}
-					break
+					break 
 				case 'hilih': 
 					if (args.length < 1) return reply('kasih teks lah^_^!!!')
 					anu = await fetchJson(`https://mhankbarbars.herokuapp.com/api/hilih?teks=${body.slice(7)}`, {method: 'get'})
@@ -746,15 +601,15 @@ client.on('group-participants-update', async (anu) => {
 				isi = arg.split(' |')[0] 
 				pesan = arg.split('|')[1] 
 				pesan2 = arg.split('|')[2] 
-                costum(pesan, isi, pesan2)
+                reply(pesan, isi, pesan2)
                 break
-                 case 'linkgc':	 
-                if (!isGroup) return reply(mess.only.group)
-				if (!isGroupAdmins) return reply(mess.only.admin) 
-				if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-                 const linkgc = await conn.groupInviteCode (from) 
-                 reply (linkgc)
-                 break 
+                 case 'linkgc':
+				    if (!isGroup) return reply(mess.only.group)
+				    if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+				    linkgc = await client.groupInviteCode (from)
+				    yeh = `https://chat.whatsapp.com/${linkgc}\n\nlink Group *${groupName}*`
+				    client.sendMessage(from, yeh, text, {quoted: mek})
+			        break
 				case 'tagall':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
@@ -762,7 +617,6 @@ client.on('group-participants-update', async (anu) => {
 					teks = (args.length > 1) ? body.slice(8).trim() : ''
 					teks += '\n\n'
 					for (let mem of groupMembers) {
-						rchoice = Math.floor(Math.random() * list_emoji.length)
 						teks += `┣➥ @${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
@@ -778,10 +632,12 @@ client.on('group-participants-update', async (anu) => {
 					reply('𝗰𝗹𝗲𝗮𝗿 𝗮𝗹𝗹 𝘀𝘂𝗸𝘀𝗲𝘀 𝘆𝗮𝗵  :)')
 					break
 			       case 'block':
+				 client.updatePresence(from, Presence.composing) 
+				 client.chatRead (from)
 					if (!isGroup) return reply(mess.only.group)
 					if (!isOwner) return reply(mess.only.ownerB)
 					client.blockUser (`${body.slice(7)}@c.us`, "add")
-					client.sendMessage(from, `𝗽𝗲𝗿𝗶𝗻𝘁𝗮𝗵 𝗗𝗶𝘁𝗲𝗿𝗶𝗺𝗮, 𝗺𝗲𝗺𝗯𝗹𝗼𝗸𝗶𝗿 ${body.slice(7)}@c.us`, text)
+					client.sendMessage(from, `perintah Diterima, memblokir ${body.slice(7)}@c.us`, text)
 					break
                     case 'unblock':
 					if (!isGroup) return reply(mess.only.group)
@@ -792,7 +648,7 @@ client.on('group-participants-update', async (anu) => {
 				case 'leave': 
 				if (!isGroup) return reply(mess.only.group)
 					if (!isOwner) return reply(mess.only.ownerB)
-				await client.client.leaveGroup(from, '𝗕𝘆𝗲𝗲', groupId)
+				await client.leaveGroup(from, '𝗕𝘆𝗲𝗲', groupId)
                     break
 				case 'bc': 
 					if (!isOwner) return reply(' *LU SIAPA* ?') 
@@ -824,14 +680,14 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (args.length < 1) return reply('𝗽𝗮𝘀𝘁𝗶 𝘆𝗮𝗻𝗴 𝗺𝗮𝘂 𝗱𝗶 𝗮𝗱𝗱 𝗮𝗻𝗮𝗸 𝗽𝘂𝗻𝗴𝘂𝘁?')
-					if (args[0].startsWith('08')) return reply('𝗚𝘂𝗻𝗮𝗸𝗮𝗻 𝗸𝗼𝗱𝗲 𝗻𝗲𝗴𝗮𝗿𝗮 ')
+					if (args.length < 1) return reply('Yang mau di add jin ya?')
+					if (args[0].startsWith('08')) return reply('Gunakan kode negara mas')
 					try {
 						num = `${args[0].replace(/ /g, '')}@s.whatsapp.net`
 						client.groupAdd(from, [num])
 					} catch (e) {
 						console.log('Error :', e)
-						reply('𝗴𝗮𝗴𝗮𝗹 𝗺𝗲𝗻𝗮𝗺𝗯𝗮𝗵𝗸𝗮𝗻, 𝗺𝘂𝗻𝗴𝗸𝗶𝗻 𝗸𝗮𝗿𝗲𝗻𝗮 𝗱𝗶 𝗽𝗿𝗶𝘃𝗮𝘁𝗲')
+						reply('Gagal menambahkan target, mungkin karena di private')
 					}
 					break
 					case 'grup':
@@ -840,7 +696,7 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (args[0] === 'buka') {
-					    reply(`𝗕𝗲𝗿𝗵𝗮𝘀𝗶𝗹 𝗠𝗲𝗺𝗯𝘂𝗸𝗮 𝗚𝗿𝗼𝘂𝗽 𝗧𝗼𝗱`)
+					    reply(`𝗕𝗲𝗿𝗵𝗮𝘀𝗶?? 𝗠𝗲𝗺𝗯𝘂𝗸𝗮 𝗚𝗿𝗼𝘂𝗽 𝗧𝗼𝗱`)
 						client.groupSettingChange(from, GroupSettingChange.messageSend, false)
 					} else if (args[0] === 'tutup') {
 						reply(`𝗕𝗲𝗿𝗵𝗮𝘀𝗶𝗹 𝗠𝗲𝗻𝘂𝘁𝘂𝗽 𝗚𝗿𝗼𝘂𝗽 𝗧𝗼𝗱`)
@@ -945,17 +801,9 @@ client.on('group-participants-update', async (anu) => {
 						fs.unlinkSync(media)
 						if (err) return reply('Yah gagal ;(, coba ulangi ^_^')
 						buffer = fs.readFileSync(ran)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: '𝗱𝗮𝗵 𝗷𝗮𝗱𝗶 '})
+						client.sendMessage(from, buffer, image, {quoted: mek, caption: '𝗱𝗮?? 𝗷𝗮𝗱𝗶 '})
 						fs.unlinkSync(ran)
 					})
-					break
-					
-				case 'simi':
-					if (args.length < 1) return reply('kasih teks lah^_^!!!')
-					teks = body.slice(5)
-					anu = await simih(teks) //fetchJson(`https://mhankbarbars.herokuapp.com/api/samisami?text=${teks}`, {method: 'get'})
-					//if (anu.error) return reply('Simi ga tau kak')
-					reply(anu)
 					break
 				case 'simih':
 					if (!isGroup) return reply(mess.only.group)
@@ -979,7 +827,7 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (args.length < 1) return reply('Boo :𝘃')
 					if (Number(args[0]) === 1) {
-						if (isNsfw) return reply('𝘀𝘂𝗱𝗮𝗵 𝗮𝗸𝘁𝗶𝗳 !!')
+						if (isNsfw) return reply('𝘀𝘂𝗱𝗮𝗵 𝗮𝗸𝘁??𝗳 !!')
 						nsfw.push(from)
 						fs.writeFileSync('./src/nsfw.json', JSON.stringify(nsfw))
 						reply('❬ 𝗦𝗨𝗞𝗦𝗘𝗦 ❭ 𝗠𝗲𝗻𝗴𝗮𝗸𝘁𝗶𝗳𝗸𝗮𝗻 𝗳𝗶𝘁𝘂𝗿 𝗻𝘀𝗳𝘄 𝗱𝗶 𝗴𝗿𝗼𝘂𝗽 𝗶𝗻𝗶')
