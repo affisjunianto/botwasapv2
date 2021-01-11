@@ -235,6 +235,12 @@ client.on('group-participants-update', async (anu) => {
             break
 				case 'help': 
 				case 'menu':
+                                        if (args.length < 1) return reply(`╔═╗╔═╗─╔══╗───╔╗
+╚╗╚╝╔╝─║╔╗║──╔╝╚╗
+─╚╗╔╝──║╚╝╚╦═╩╗╔╝
+─╔╝╚╦══╣╔═╗║╔╗║║
+╔╝╔╗╚╦═╣╚═╝║╚╝║╚╗
+╚═╝╚═╝─╚═══╩══╩═╝`)
 					client.sendMessage(from, help(prefix), text)
 					break
 				case 'donasi':
