@@ -1,5 +1,5 @@
-const help = (prefix) => {
-	return `
+const help = (prefix) => { 
+	return `                 
 ┏━━❉ *About Bot* ❉━━┓
 ┣⊱ *${prefix}owner*
 ┣⊱ *${prefix}donasi*
@@ -63,6 +63,25 @@ const help = (prefix) => {
 ┣⊱ *${prefix}ssweb*
 ┣⊱ *${prefix}anjing*
 ┣⊱ *${prefix}indohot*
+┣━━❀ *Berita* ❀━━
+┣⊱ *${prefix}berita*
+┣⊱ *${prefix}nasional*
+┣⊱ *${prefix}internasional*
+┣⊱ *${prefix}gayahidup* 
+┣⊱ *${prefix}teknologi*
+┣⊱ *${prefix}ekonomi*
+┣⊱ *${prefix}hiburan*
+┣⊱ *${prefix}cariberita* [teks]
+┣⊱ *${prefix}detberita* [url]
+┣━━❀ *Manga* ❀━━
+┣⊱ *${prefix}allmanga* [page number]
+┣⊱ *${prefix}popular* [page number]
+┣⊱ *${prefix}detmanga* [nama manga]
+┣⊱ *${prefix}carimanga* [nama]
+┣⊱ *${prefix}genredet* [genre/page number]
+┣⊱ *${prefix}carichapter* [chapter]
+┣⊱ *${prefix}genrelist*
+┣⊱ *${prefix}recomend*
 ┣━━❀ *Group* ❀━━
 ┣⊱ *${prefix}linkgc*
 ┣⊱ *${prefix}tagall*
@@ -89,6 +108,4 @@ const help = (prefix) => {
 
 `
 }
-
 exports.help = help
-
