@@ -306,6 +306,110 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(anu.result)
 					client.sendMessage(from, buffer, image, {caption: 'Nih anjim', quoted: mek})
 					break
+//By Mr Devil
+                
+                 case 'berita':
+             anu = await fetchJson(`https://www.news.developeridn.com`, {method: 'get'})
+             if (anu.error) return reply(anu.error)
+             hasil = `*Judul* : ${anu.data.judul}\n*Link* : ${anu.data.link}\n*Tipe* : ${anu.data.tipe}\n*Waktu* : ${anu.data.waktu}\n\n`
+              cilent.sendMessage(from, hasil, text, {quoted: mek,})
+              break
+                  case 'nasional':
+               anu = await fetchJson(`https://www.news.developeridn.com/nasional`, {method: 'get'})
+                if (anu.error) return reply(anu.error)
+                hasil = `*Judul* : ${anu.data.judul}\n*Link* : ${anu.data.link}\n*Tipe* : ${anu.data.tipe}\n*Waktu* : ${anu.data.waktu}\n\n`
+                  cilent.sendMessage(form, hasil, text, {quoted: mek,})
+                break
+                  case 'internasional':
+                anu = await fetchJson(`https://www.news.developeridn.com/internasiona`, {method: 'get'})
+                 if (anu.error) return reply(anu.error)
+                 hasil = `*Judul* : ${anu.data.judul}\n*Link* : ${anu.data.link}\n*Tipe* : ${anu.data.tipe}\n*Waktu* : ${anu.data.waktu}\n\n`
+                    cilent.sendMessage(form, hasil, text, {quoted: mek,})
+                  break
+                     case 'ekonomi':
+                  anu = await fetchJson(`https://www.news.developeridn.com/ekonomi`, {method: 'get'})
+                   if (anu.error) return reply(anu.error)
+                   hasil = `*Judul* : ${anu.data.judul}/n*Link* : ${anu.data.link}\n*Tipe* : ${anu.data.tipe}\n*Waktu* : ${anu.data.waktu}\n\n`
+                   cilent.sendMessage(form, hasil, text, {quoted: mek,})
+                    break
+                      case 'olahraga':
+                    anu = await fetchJson(`https://www.news.developeridn.com/olahraga`, {method: 'get'})
+                     if (anu.error) return reply(anu.error)
+                     hasil = `*Judul* : ${anu.data.judul}\n*Link* : ${anu.data.link}\n*Tipe* : ${anu.data.tipe}\n*Waktu* : ${anu.data.waktu}\n\n`
+                     cilent.sendMessage(form, hasil, text, {quoted: mek,})
+                     break
+                       case 'teknologi':
+                    anu = await fetchJson(`https://www.news.developeridn.com/teknologi`, {method: 'get'})
+                      if (anu.error) return reply(anu.error)
+                     hasil = `*Judul* : ${anu.data.judul}\n*Link* : ${anu.data.link}\n*Tipe* : ${anu.data.tipe}\n*Waktu* : ${anu.data.waktu}\n\n`
+                     cilent.sendMessage(form, hasil, text, {quoted: mek,})
+                      break
+                        case 'hiburan':
+                     anu = await fetchJson(`https://www.news.developeridn.com/hiburan`, {method: 'get'})
+                     if (anu.error) return reply(anu.error)
+                     hasil = `*Judul* : ${anu.data.judul}\n*Link* : ${anu.data.link}\n*Tipe* : ${anu.data.tipe}\n*Waktu* : ${anu.data.waktu}\n\n`
+                     cilent.sendMessage(from, hasil, text, {quoted: mek,})
+                      break
+case 'gayahidup':
+                     anu = await fetchJson(`https://www.news.developeridn.com/gaya-hidupp`, {method: 'get'})
+                     if (anu.error) return reply(anu.error)
+                     hasil = `*Judul* : ${anu.data.judul}\n*Link* : ${anu.data.link}\n*Tipe* : ${anu.data.tipe}\n*Waktu* : ${anu.data.waktu}\n\n`
+                     cilent.sendMessage(from, hasil, text, {quoted: mek,})
+                      break
+case 'detberita':
+					if (args.length < 1) return reply('Ketikan Command ${perfix}detberita [url].\nContoh: ${perfix}detberita https://www.cnnindonesia.com/internasional/20200513095240-134-502769/turis-jatuh-usai-nekat-kunjungi-yellowstone-saat-pandemi')
+					anu = await fetchJson(`https://www.news.developeridn.com/detail/?url=${body.slice(11)}`, {method: 'get'})
+					reply('*Judul:*  ${anu.data.judul}\n\n*Berita:*/n/n${anu.data.body}')
+					break
+case 'cariberita':
+					if (args.length < 1) return reply('Ketikan Command ${perfix}cariberita [teks].\nContoh: ${perfix}cariberita indonesia')
+					anu = await fetchJson(`https://www.news.developeridn.com/detail/?url=${body.slice(11)}`, {method: 'get'})
+					reply('*Judul:*  ${anu.data.judul}\n*Link:* ${anu.data.link}\n*Tipe:* ${anu.data.tipe}\n*Waktu:* ${anu.data.waktu}/n/n')
+					break
+case 'allmanga':
+					if (args.length < 1) return reply('Ketikan Command ${perfix}allmanga [page number].\nContoh: ${perfix}allmanga 1')
+					anu = await fetchJson(`https://mangamint.kaedenoki.net/api/manga/page/${body.slice(10)}`, {method: 'get'})
+					reply('*Judul* : ${res.data.manga_list.title}\n*Type* : ${res.data.manga_list.type}\n*Update on* : ${res.data.manga_list.update_on}\n*Endpoint* : ${res.data.manga_list.endpoint}\n×Chapter* : ${res.data.manga_list.chapter}\n\n')
+					break
+case 'popular':
+					if (args.length < 1) return reply('Ketikan Command ${perfix}popular [page number].\nContoh: ${perfix}popular 1')
+					anu = await fetchJson(`https://mangamint.kaedenoki.net/api/manga/popular/${body.slice(9)}`, {method: 'get'})
+					reply('*Judul* : ${anu.data.manga_list.title}\n*Type* : ${anu.data.manga_list.type}\n*Update on* : ${anu.data.manga_list.update_on}\n*Endpoint* : ${anu.data.manga_list.endpoint}\n×Chapter* : ${anu.data.manga_list.chapter}\n\n')
+					break
+case 'detmanga':
+					if (args.length < 1) return reply('Ketikan Command ${perfix}detmanga [judul].\nContoh: ${perfix}detmanga after-transformation-mine-and-her-wild-fantasy/')
+					anu = await fetchJson(`https://mangamint.kaedenoki.net/api/manga/detail/${body.slice(10)}`, {method: 'get'})
+					reply(`*Judul* : ${anu.data.title}\n*Type* : ${anu.data.type}\n*Author* : ${anu.data.author}\n*Status* : ${anu.data.status}\n*Manga Endopoint* : ${anu.data.manga_endpoint}\n*Synopsis* : ${anu.data.synopsis}`)
+					break
+case 'carimanga':
+					if (args.length < 1) return reply('Ketikan Command ${perfix}carimanga [nama manga].\nContoh: ${perfix}carimanga komi san')
+					anu = await fetchJson(`https://mangamint.kaedenoki.net/api/search/${body.slice(11)}`, {method: 'get'})
+					reply(`*Judul* : ${anu.data.manga_list.title}\n*Type* : ${anu.data.manga_list.type}\n*Update on* : ${anu.data.manga_list.update_on}\n*Endpoint* : ${anu.data.manga_list.endpoint}`)
+					break
+case 'genredet':
+					if (args.length < 1) return reply('Ketikan Command ${perfix}genredet [genre/pagenumber].\nContoh: ${perfix}genredet action/1.')
+					anu = await fetchJson(`https://mangamint.kaedenoki.net/api/genres/${body.slice(10)}`, {method: 'get'})
+					reply('*Judul* : ${anu.data.manga_list.title}\n*Type* : ${anu.data.manga_list.type}\n*Endpoint* : ${anu.data.manga_list.endpoint}\n\n')
+					break
+case 'carichapter':
+					if (args.length < 1) return reply('Ketikan Command ${perfix}carichapter [chapter].\nContoh: ${perfix}carichapter after-transformation-mine-and-her-wild-fantasy-chapter-70-bahasa-indonesia')
+					anu = await fetchJson(`https://mangamint.kaedenoki.net/api/chapter/${body.slice(13)}`, {method: 'get'})
+					reply('*Endpoint* : ${anu.data.chapter_endpoint}\n*Chapter Page* : ${anu.data.chapter_pages}\n*Image* : ${anu.data.chapter_image.chapter_image_link}\n\n')
+					break
+                 case 'genrelist':
+              anu = await fetchJson(`https://mangamint.kaedenoki.net/api/genres`, {method: 'get'})
+               if (anu.error) return reply(anu.error)
+               hasil = `*Genre* : ${anu.data.list_genre.genre_name}\n`
+               cilent.sendMessage(form, hasil, text, {quoted: mek,})
+                   break
+                 case 'recomend':
+              anu = await fetchJson(`https://mangamint.kaedenoki.net/api/recommended`, {method: 'get'})
+              if (anu.error) return reply(anu.error)
+              hasil = `*Judul* : ${anu.data.manga_list.title}\n*Endpoint* : ${anu.data.manga_list.endpoint}\n\n`
+               cilent.sendMessage(form, hasil, text, {quoted: mek,})
+                   break
+
+//cuma sampai sini doank :v
                  case 'phlogo':
 					var gh = body.slice(9)
 					var gbl1 = gh.split("|")[0];
