@@ -1,5 +1,5 @@
 {
-  "name": "XBOT",
+  "name": "SEXBOT",
   "version": "1.0.0",
   "description": "TERMUX ONLY XBOT",
   "main": "index.js",
@@ -41,7 +41,7 @@
   "keywords": [
     "k"
   ],
-  "author": "Abdul Muttaqin",
+  "author": "Abdul Muttaqin.zip",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/affisjunianto/botwasapv2/issues"
